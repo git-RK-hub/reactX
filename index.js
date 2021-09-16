@@ -1,8 +1,7 @@
-/* eslint-disable import/extensions */
 import chalk from 'chalk';
 import { Command } from 'commander';
 import inquirer from 'inquirer';
-import ora from 'ora';
+import createApp from './app/index.js';
 import { initOptions } from './options.js';
 
 const program = new Command();
@@ -21,19 +20,7 @@ const start = () => {
     ])
     .then((answers) => {
       const idx = initOptions.findIndex((el) => el === answers.devApp);
-      const loader = ora(
-        chalk.greenBright(
-          initOptions[idx].replace(
-            'Create',
-            'Sit back and relax, Creating your'
-          )
-        )
-      );
-      loader.start();
-      // createApp(idx);
-      setTimeout(() => {
-        loader.succeed();
-      }, 2000);
+      createApp(idx + 1);
     });
 };
 
