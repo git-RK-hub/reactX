@@ -1,6 +1,7 @@
 {
   "name": "reactx",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/git-RK-hub/reactX/issues"
   },
-  "homepage": "https://github.com/git-RK-hub/reactX#readme"
+  "homepage": "https://github.com/git-RK-hub/reactX#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^8.2.0",
+    "ora": "^6.0.1"
+  }
 }
