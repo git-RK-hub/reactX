@@ -1,0 +1,19 @@
+{
+  "name": "reactx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/git-RK-hub/reactX.git"
+  },
+  "author": "Rishi Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/git-RK-hub/reactX/issues"
+  },
+  "homepage": "https://github.com/git-RK-hub/reactX#readme"
+}
