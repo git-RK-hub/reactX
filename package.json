@@ -23,6 +23,7 @@
     "commander": "^8.2.0",
     "execa": "^5.1.1",
     "inquirer": "^8.1.5",
+    "mongoose": "^6.0.6",
     "ora": "^6.0.1"
   },
   "devDependencies": {
