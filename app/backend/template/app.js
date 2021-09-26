@@ -42,9 +42,13 @@ app.use(cookieParser());
 // Data sanitization against XSS
 app.use(xss());
 
+app.get("/", (req, res) => {
+  res.status(200).json({message: "Api working"});
+})
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log("Listening on port: " + port);
+  console.log("Listening on port: " + port);
 })
 `;
 

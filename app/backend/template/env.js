@@ -1,8 +1,7 @@
 const env = () => `NODE_ENV=development
 USER=
 PORT=
-DATABASE= 
-DATABASE_LOCAL= mongodb://localhost:27017/
+DATABASE=mongodb://localhost:27017/
 DATABASE_PASSWORD=
 SQL_DB_DIALECT=
 SQL_DB_HOST=
