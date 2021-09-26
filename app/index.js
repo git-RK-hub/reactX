@@ -10,9 +10,9 @@ const createApp = async (options) => {
   );
   loader.start();
   // 1. Write backend
-  writeBackend(options.db);
+  writeBackend(options);
   // // 2. Write auths
-  writeAuths(options.auths);
+  writeAuths(options);
   // // 3. Write React app
   writeFrontend();
 
