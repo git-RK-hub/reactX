@@ -6,7 +6,7 @@ const packageJSON = (project, author) => `{
     "scripts": {
       "start": "node app.js",
       "dev": "nodemon app.js",
-      "start:prod": "NODE_ENV=production nodemon app.js",
+      "start:prod": "NODE_ENV=production nodemon app.js"
     },
     "author": "${author}",
     "license": "ISC",
@@ -32,7 +32,6 @@ const packageJSON = (project, author) => `{
       "eslint-plugin-node": "^8.0.1",
       "eslint-plugin-prettier": "^3.0.1",
       "eslint-plugin-react": "^7.12.4",
-      "parcel-bundler": "^1.12.3",
       "prettier": "^1.17.0"
     }
   }
