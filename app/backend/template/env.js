@@ -1,4 +1,4 @@
-const env = `NODE_ENV=development
+const env = () => `NODE_ENV=development
 USER=
 PORT=
 DATABASE= 

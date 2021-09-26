@@ -1,4 +1,4 @@
-const app = `const path = require('path');
+const app = () => `const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
