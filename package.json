@@ -21,20 +21,13 @@
   },
   "homepage": "https://github.com/git-RK-hub/reactX#readme",
   "dependencies": {
-    "": "file:backend",
-    "awesome": "file:backend",
     "chalk": "^4.1.2",
     "commander": "^8.2.0",
     "execa": "^5.1.1",
     "fs-extra": "^10.0.0",
     "inquirer": "^8.1.5",
     "mongoose": "^6.0.6",
-    "ooo": "file:backend",
-    "ora": "^6.0.1",
-    "r": "file:backend",
-    "riiii": "file:backend",
-    "rishi": "file:backend",
-    "rsf": "file:backend"
+    "ora": "^6.0.1"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
