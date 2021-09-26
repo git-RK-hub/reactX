@@ -11,7 +11,7 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", () => {
     console.log("Connected successfully");
-}
+})
 module.exports = db;
 `;
 
@@ -27,6 +27,7 @@ const sequelize = new Sequelize(process.env.DB, process.env.USER, process.env.PA
         acquire: 30000,
         idle: 10000,
     }
+});
 const db = {};
 db.sequelize = sequelize;
 module.exports = db;
