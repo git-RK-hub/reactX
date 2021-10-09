@@ -1,14 +1,18 @@
-const env = () => `NODE_ENV=development
-USER=
-PORT=
-DATABASE=mongodb://localhost:27017/
-DATABASE_PASSWORD=
-SQL_DB_DIALECT=
-SQL_DB_HOST=
-SQL_DB_PORT=
-SQL_DB_NAME=
-SQL_DB_USER=
-SQL_DB_PASSWORD=
+export const mongoEnv = (uri) => `NODE_ENV=development
+PORT=3033
+M_DB=${uri}
 `;
 
-export default env;
+export const sqlEnv = ({ host, name, user, password }) => `NODE_ENV=development
+PORT=3033
+SQL_DB_DIALECT=mysql
+SQL_DB_HOST=${host}
+SQL_DB_PORT=3306
+SQL_DB_NAME=${name}
+SQL_DB_USER=${user}
+SQL_DB_PASSWORD=${password}
+`;
+
+export const env = () => `NODE_ENV=development
+PORT = 3033
+`;
