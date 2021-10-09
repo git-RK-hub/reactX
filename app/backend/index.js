@@ -1,10 +1,11 @@
 import fs from 'fs-extra';
 import path from 'path';
 import ora from 'ora';
+import chalk from 'chalk';
 import execa from 'execa';
-import { mongoDbConfig } from './template/dbconfig.js';
+import { mongoDbConfig, sqlDbConfig } from './template/dbconfig.js';
 import app from './template/app.js';
-import env from './template/env.js';
+import { sqlEnv, env, mongoEnv } from './template/env.js';
 import prettier from './template/prettier.js';
 import eslint from './template/eslint.js';
 import packageJSON from './template/package.json.js';
@@ -12,7 +13,6 @@ import packageJSON from './template/package.json.js';
 const writeBackend = async (options) => {
   // create a backend folder
   const loader = ora('Creating backend');
-  //TODO: handle case if folder already exist
 
   loader.start();
 
@@ -21,37 +21,37 @@ const writeBackend = async (options) => {
     await fs.mkdir(backendPath);
     loader.succeed();
   } catch (err) {
-    console.log(err);
+    console.log(chalk.redBright('Error 💥', err));
   }
 
   // create controller folder
   try {
     loader.start();
-    loader.text = 'creating controllers';
+    loader.text = 'Writing controllers';
     await fs.mkdir(`${backendPath}/controllers`);
     loader.succeed();
   } catch (err) {
-    console.log(err);
+    console.log(chalk.redBright('Error 💥', err));
   }
 
   // create models folder
   try {
     loader.start();
-    loader.text = 'creating models';
+    loader.text = 'Writing models';
     await fs.mkdir(`${backendPath}/models`);
     loader.succeed();
   } catch (err) {
-    console.log(err);
+    console.log(chalk.redBright('Error 💥', err));
   }
 
   // create routes folder
   try {
     loader.start();
-    loader.text = 'creating routes';
+    loader.text = 'Writing routes';
     await fs.mkdir(`${backendPath}/routes`);
     loader.succeed();
   } catch (err) {
-    console.log(err);
+    console.log(chalk.redBright('Error 💥', err));
   }
 
   // write app.js file
@@ -59,29 +59,41 @@ const writeBackend = async (options) => {
   try {
     await fs.writeFile(appFilePath, app());
   } catch (err) {
-    console.log(err);
+    console.log(chalk.redBright('Error 💥', err));
   }
 
   // write db connect file
   const dbFilePath = path.join(backendPath, 'dbconnect.js');
   try {
     loader.start();
-    loader.text = 'creating database connection';
-    await fs.writeFile(dbFilePath, mongoDbConfig());
+    loader.text = 'Creating database connection';
+    if (options.database === 0) {
+      await fs.writeFile(dbFilePath, mongoDbConfig());
+    } else if (options.database === 1) {
+      await fs.writeFile(dbFilePath, sqlDbConfig());
+    } else {
+      await fs.writeFile(dbFilePath, '');
+    }
     loader.succeed();
   } catch (err) {
-    console.log(err);
+    console.log(chalk.redBright('Error 💥', err));
   }
 
   // write env file
   const envFilePath = path.join(backendPath, '.env');
   try {
     loader.start();
-    loader.text = 'writing environment variables';
-    await fs.writeFile(envFilePath, env());
+    loader.text = 'Writing environment variables';
+    if (options.database === 0) {
+      await fs.writeFile(envFilePath, mongoEnv(options.dbConfig.uri));
+    } else if (options.database === 1) {
+      await fs.writeFile(envFilePath, sqlEnv(options.dbConfig));
+    } else {
+      await fs.writeFile(envFilePath, env());
+    }
     loader.succeed();
   } catch (err) {
-    console.log(err);
+    console.log(chalk.redBright('Error 💥', err));
   }
 
   // write prettier file
@@ -90,7 +102,7 @@ const writeBackend = async (options) => {
   try {
     await fs.writeFile(prettierFilePath, prettier());
   } catch (err) {
-    console.log(err);
+    console.log(chalk.redBright('Error 💥', err));
   }
 
   //write eslint files
@@ -98,7 +110,7 @@ const writeBackend = async (options) => {
   try {
     await fs.writeFile(eslintFilePath, eslint());
   } catch (err) {
-    console.log(err);
+    console.log(chalk.redBright('Error 💥', err));
   }
 
   // write packagejson file and install dependencies
@@ -110,16 +122,20 @@ const writeBackend = async (options) => {
       packageJSON(options.projectName, options.authorName)
     );
   } catch (err) {
-    console.log(err);
+    console.log(chalk.redBright('Error 💥', err));
   }
 
   try {
     loader.start();
     loader.text = 'Installing dependencies';
-    await execa('npm', ['install', './backend']);
+    await execa('npm', ['install'], {
+      cwd: `./backend`,
+      stdin: 'ignore',
+    });
     loader.succeed();
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    loader.succeed();
+    console.log(chalk.redBright('Error 💥', err));
   }
 };
 
