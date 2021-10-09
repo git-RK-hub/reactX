@@ -21,7 +21,10 @@ const packageJSON = (project, author) => `{
       "express-rate-limit": "^3.5.0",
       "helmet": "^3.16.0",
       "morgan": "^1.9.1",
-      "xss-clean": "^0.1.1"
+      "xss-clean": "^0.1.1",
+      "mongoose": "^6.0.10",
+      "sequelize": "^6.7.0",
+      "mysql2": "^2.3.0"
     },
     "devDependencies": {
       "eslint": "^5.16.0",
