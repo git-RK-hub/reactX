@@ -1,8 +1,5 @@
 export const mongoDbConfig = () => `const mongoose = require('mongoose');
-const DB = process.env.DATABASE.replace(
-    '<PASSWORD>',
-    process.env.DATABASE_PASSWORD
-);
+const DB = process.env.M_DB;
 
 mongoose
     .connect(DB, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -15,12 +12,11 @@ db.once("open", () => {
 module.exports = db;
 `;
 
-export const sqlDbConfig = () => `
-const Sequelize = require("sequelize");
-const sequelize = new Sequelize(process.env.DB, process.env.USER, process.env.PASSWORD, {
-    host: procees.env.HOST,
-    dialect: process.env.dialect,
-    port: process.env.port,
+export const sqlDbConfig = () => `const Sequelize = require("sequelize");
+const sequelize = new Sequelize(process.env.SQL_DB_NAME, process.env.SQL_DB_USER, process.env.SQL_DB_PASSWORD, {
+    host: process.env.SQL_DB_HOST,
+    dialect: process.env.SQL_DB_DIALECT,
+    port: process.env.SQL_DB_PORT,
     pool: {
         max: 5,
         min: 0,
