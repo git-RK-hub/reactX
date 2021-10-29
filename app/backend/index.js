@@ -22,6 +22,7 @@ const writeBackend = async (options) => {
     loader.succeed();
   } catch (err) {
     console.log(chalk.redBright('Error 💥', err));
+    process.exit(1);
   }
 
   // create controller folder
@@ -32,6 +33,7 @@ const writeBackend = async (options) => {
     loader.succeed();
   } catch (err) {
     console.log(chalk.redBright('Error 💥', err));
+    process.exit(1);
   }
 
   // create models folder
@@ -42,6 +44,7 @@ const writeBackend = async (options) => {
     loader.succeed();
   } catch (err) {
     console.log(chalk.redBright('Error 💥', err));
+    process.exit(1);
   }
 
   // create routes folder
@@ -52,6 +55,7 @@ const writeBackend = async (options) => {
     loader.succeed();
   } catch (err) {
     console.log(chalk.redBright('Error 💥', err));
+    process.exit(1);
   }
 
   // write app.js file
@@ -60,6 +64,7 @@ const writeBackend = async (options) => {
     await fs.writeFile(appFilePath, app());
   } catch (err) {
     console.log(chalk.redBright('Error 💥', err));
+    process.exit(1);
   }
 
   // write db connect file
@@ -77,6 +82,7 @@ const writeBackend = async (options) => {
     loader.succeed();
   } catch (err) {
     console.log(chalk.redBright('Error 💥', err));
+    process.exit(1);
   }
 
   // write env file
@@ -94,6 +100,7 @@ const writeBackend = async (options) => {
     loader.succeed();
   } catch (err) {
     console.log(chalk.redBright('Error 💥', err));
+    process.exit(1);
   }
 
   // write prettier file
@@ -103,6 +110,7 @@ const writeBackend = async (options) => {
     await fs.writeFile(prettierFilePath, prettier());
   } catch (err) {
     console.log(chalk.redBright('Error 💥', err));
+    process.exit(1);
   }
 
   //write eslint files
@@ -111,6 +119,7 @@ const writeBackend = async (options) => {
     await fs.writeFile(eslintFilePath, eslint());
   } catch (err) {
     console.log(chalk.redBright('Error 💥', err));
+    process.exit(1);
   }
 
   // write packagejson file and install dependencies
@@ -123,11 +132,12 @@ const writeBackend = async (options) => {
     );
   } catch (err) {
     console.log(chalk.redBright('Error 💥', err));
+    process.exit(1);
   }
 
   try {
     loader.start();
-    loader.text = 'Installing dependencies';
+    loader.text = 'Installing backend dependencies';
     await execa('npm', ['install'], {
       cwd: `./backend`,
       stdin: 'ignore',
@@ -136,6 +146,7 @@ const writeBackend = async (options) => {
   } catch (err) {
     loader.succeed();
     console.log(chalk.redBright('Error 💥', err));
+    process.exit(1);
   }
 };
 
