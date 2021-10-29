@@ -14,7 +14,7 @@ const createApp = async (options) => {
   // // 2. Write auths
   writeAuths(options);
   // // 3. Write React app
-  writeFrontend();
+  writeFrontend(options);
 
   // setTimeout(() => {
   // loader.text = 'Enjoy Coding 🤎';
