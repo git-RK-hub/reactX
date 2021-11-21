@@ -5,21 +5,24 @@ import writeAuths from './auths/index.js';
 import writeFrontend from './frontend/index.js';
 
 const createApp = async (options) => {
-  // const loader = ora(
-  //   chalk.greenBright('Go grab your coffee, meanwhile we creating your App')
-  // );
-  // loader.start();
-  // 1. Write backend
-  writeBackend(options);
-  // // 2. Write auths
-  writeAuths(options);
-  // // 3. Write React app
-  writeFrontend(options);
+  const loader = ora(
+    chalk.greenBright('Go grab your coffee, meanwhile we creating your App')
+  );
+  loader.start();
 
-  // setTimeout(() => {
-  // loader.text = 'Enjoy Coding 🤎';
-  // loader.succeed();
-  // }, 6000);
+  setTimeout(async () => {
+    loader.succeed();
+    // 1. Write backend
+    await writeBackend(options);
+    // 2. Write auths
+    await writeAuths(options);
+    // 3. Write React app
+    await writeFrontend(options);
+
+    loader.start();
+    loader.text = 'Enjoy Coding 🤎';
+    loader.succeed();
+  }, 2000);
 };
 
 export default createApp;
